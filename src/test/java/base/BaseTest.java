@@ -5,21 +5,22 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-public class BaseTest extends BasePage {
-    private WebDriver driver;
+public class BaseTest {
+    protected WebDriver driver;
+
     @BeforeMethod
-    public void startSession(){
+    public void startSession() {
         setUp();
         driver.get("https://mvnrepository.com/");
-        wait(5);
-        tearDown();
     }
-    private WebDriver setUp(){
+
+    private WebDriver setUp() {
         driver = new ChromeDriver();
         return driver;
     }
+
     @AfterMethod
-    public void tearDown(){
+    public void tearDown() {
         driver.quit();
     }
 }
