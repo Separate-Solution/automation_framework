@@ -7,7 +7,7 @@ import page_objects.PageObject;
 public class InitialTest extends BaseTest {
     @Test
     public void initialTestCase(){
-        PageObject pageObject = new PageObject();
+        PageObject pageObject = new PageObject(driver);
         pageObject.clickSearch();
     }
 }
