@@ -6,4 +6,6 @@
   <version>1.0-SNAPSHOT</version>
   <name>Archetype - automation_framework</name>
   <url>http://maven.apache.org</url>
+  <dependencies>
+  </dependencies>
 </project>
