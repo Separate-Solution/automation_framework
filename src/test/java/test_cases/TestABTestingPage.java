@@ -8,11 +8,15 @@ import page_objects.HomePage;
 
 public class TestABTestingPage extends BaseTest {
     private HomePage homePage = new HomePage(driver);
-    private ABTesting abTesting = new ABTesting(driver);
 
+    private ABTesting abTesting;
+    private ABTesting createABTestingInstance(){
+        return abTesting = new ABTesting(driver);
+    }
     @Test
     public void testUserIsOnABTestingPage() {
-        abTesting = abTesting.redirectToABTestingPage();
+        createABTestingInstance();
+        abTesting.redirectToABTestingPage();
         Assert.assertEquals(driver.getCurrentUrl(), "https://the-internet.herokuapp.com/abtest", "user is not on ab testing page");
         homePage = homePage.redirectToHomePage();
         Assert.assertEquals(driver.getCurrentUrl(), "https://the-internet.herokuapp.com/", "user is not on home page");
