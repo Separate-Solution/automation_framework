@@ -11,7 +11,7 @@ public class BaseTest {
     @BeforeMethod
     public void startSession() {
         setUp();
-        driver.get("https://mvnrepository.com/");
+        driver.get("https://the-internet.herokuapp.com/");
     }
 
     private WebDriver setUp() {
