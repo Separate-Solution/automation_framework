@@ -6,14 +6,17 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class PageObject extends BasePage {
-    public PageObject(WebDriver driver){
+public class ABTesting extends BasePage {
+    public ABTesting(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
-    @FindBy(xpath = "//input[@class='button']")
-    private WebElement searchButton;
-    public void clickSearch(){
-        searchButton.click();
+
+    @FindBy(linkText = "A/B Testing")
+    private WebElement abTestingLink;
+
+    public ABTesting redirectToABTestingPage() {
+        abTestingLink.click();
+        return new ABTesting(driver);
     }
 }

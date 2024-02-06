@@ -2,7 +2,8 @@
 <suite name="initial test suite">
     <test name="initial test">
         <classes>
-            <class name="test_cases.InitialTest"/>
+            <class name="test_cases.TestHomePage"/>
+            <class name="test_cases.TestABTestingPage"/>
         </classes>
     </test>
 </suite>
