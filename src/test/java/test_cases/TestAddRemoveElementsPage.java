@@ -9,15 +9,12 @@ import page_objects.AddRemoveElementsPage;
 public class TestAddRemoveElementsPage extends BaseTest {
     private AddRemoveElementsPage addRemoveElementsPage;
     private HelperClass helperClassInstance;
-
     private AddRemoveElementsPage createAddRemoveElementsInstance() {
         return addRemoveElementsPage = new AddRemoveElementsPage(driver);
     }
-
-    private HelperClass createSomethingInstance() {
+    private HelperClass createSomethingInstance(){
         return helperClassInstance = new HelperClass(driver);
     }
-
     @Test
     public void testAddRemoveElementsFunctionality() {
         createAddRemoveElementsInstance();
@@ -28,12 +25,10 @@ public class TestAddRemoveElementsPage extends BaseTest {
         Assert.assertTrue(helperClassInstance.someMethod());
         addRemoveElementsPage.clickDeleteElement();
     }
-
     class HelperClass extends AddRemoveElementsPage {
         HelperClass(WebDriver driver) {
             super(driver);
         }
-
         public Boolean someMethod() {
             return super.webElementExists(deleteElementButton);
         }
