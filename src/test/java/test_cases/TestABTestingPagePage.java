@@ -3,15 +3,15 @@ package test_cases;
 import base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import page_objects.ABTesting;
+import page_objects.ABTestingPage;
 import page_objects.HomePage;
 
-public class TestABTestingPage extends BaseTest {
+public class TestABTestingPagePage extends BaseTest {
     private HomePage homePage = new HomePage(driver);
 
-    private ABTesting abTesting;
-    private ABTesting createABTestingInstance(){
-        return abTesting = new ABTesting(driver);
+    private ABTestingPage abTesting;
+    private ABTestingPage createABTestingInstance(){
+        return abTesting = new ABTestingPage(driver);
     }
     @Test
     public void testUserIsOnABTestingPage() {
