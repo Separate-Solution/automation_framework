@@ -8,27 +8,31 @@ import page_objects.AddRemoveElementsPage;
 
 public class TestAddRemoveElementsPage extends BaseTest {
     private AddRemoveElementsPage addRemoveElementsPage;
-    private HelperClass helperClassInstance;
+    private UtilizeBasePage utilizeBasePageInstance;
+
     private AddRemoveElementsPage createAddRemoveElementsInstance() {
         return addRemoveElementsPage = new AddRemoveElementsPage(driver);
     }
-    private HelperClass createSomethingInstance(){
-        return helperClassInstance = new HelperClass(driver);
+
+    private UtilizeBasePage createUtilizeBasePageInstance() {
+        return utilizeBasePageInstance = new UtilizeBasePage(driver);
     }
+
     @Test
     public void testAddRemoveElementsFunctionality() {
         createAddRemoveElementsInstance();
-        createSomethingInstance();
+        createUtilizeBasePageInstance();
         addRemoveElementsPage.redirectToAddRemoveElementsPage();
         addRemoveElementsPage.clickAddElement();
-        System.out.println(helperClassInstance.someMethod());
-        Assert.assertTrue(helperClassInstance.someMethod());
+        Assert.assertTrue(utilizeBasePageInstance.someMethod());
         addRemoveElementsPage.clickDeleteElement();
     }
-    class HelperClass extends AddRemoveElementsPage {
-        HelperClass(WebDriver driver) {
+
+    class UtilizeBasePage extends AddRemoveElementsPage {
+        UtilizeBasePage(WebDriver driver) {
             super(driver);
         }
+
         public Boolean someMethod() {
             return super.webElementExists(deleteElementButton);
         }
