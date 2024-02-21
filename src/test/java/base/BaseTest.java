@@ -10,29 +10,51 @@ import org.testng.annotations.BeforeMethod;
 
 public class BaseTest {
     protected WebDriver driver;
+
     @BeforeMethod
-    public void startSession() {
-        setUp();
+    public void setUp() {
+        startDriverSession();
         driver.get("https://the-internet.herokuapp.com/");
     }
 
-    private void setUp() {
-        launchChromeDriver();
+    private void startDriverSession() {
+        String browser = System.getProperty("browser");
+        switch (browser.toLowerCase()) {
+            case "chrome":
+                launchChromeDriver();
+                break;
+            case "firefox":
+                launchFirefoxDriver();
+                break;
+            case "safari":
+                launchSafariDriver();
+                break;
+            case "edge":
+                launchEdgeDriver();
+                break;
+            default:
+                System.out.println("unrecognized browser");
+        }
     }
-    private WebDriver launchChromeDriver(){
+
+    private WebDriver launchChromeDriver() {
         driver = new ChromeDriver();
         return driver;
     }
-    private WebDriver launchFirefoxDriver(){
+
+    private WebDriver launchFirefoxDriver() {
+        System.setProperty("webdriver.gecko.driver", "/snap/bin/geckodriver");
         driver = new FirefoxDriver();
         return driver;
     }
-    private WebDriver launchSafariDriver(){
-        driver=new SafariDriver();
+
+    private WebDriver launchSafariDriver() {
+        driver = new SafariDriver();
         return driver;
     }
-    private WebDriver launchEdgeDriver(){
-        driver=new EdgeDriver();
+
+    private WebDriver launchEdgeDriver() {
+        driver = new EdgeDriver();
         return driver;
     }
 
