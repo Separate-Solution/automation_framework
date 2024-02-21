@@ -18,12 +18,42 @@ public class BasePage {
             System.out.println(interruptedException.getMessage());
         }
     }
-    protected Boolean webElementExists(WebElement webElement){
+
+    protected Boolean webElementExists(WebElement webElement) {
         try {
             return webElement.isDisplayed();
-        }catch (NoSuchElementException noSuchElementException){
+        } catch (NoSuchElementException noSuchElementException) {
             System.out.println(noSuchElementException.getMessage());
             return false;
         }
+    }
+
+    protected void navigateBack() {
+        driver.navigate().back();
+    }
+
+    protected void navigateForward() {
+        driver.navigate().forward();
+    }
+
+    protected void refreshPage() {
+        driver.navigate().refresh();
+    }
+
+    private void clearText(WebElement textField) {
+        textField.clear();
+    }
+
+    protected void enterText(WebElement textField, String text) {
+        clearText(textField);
+        textField.sendKeys(text);
+    }
+
+    protected String getText(WebElement textField) {
+        return textField.getText();
+    }
+
+    protected void clickButton(WebElement button) {
+        button.click();
     }
 }
