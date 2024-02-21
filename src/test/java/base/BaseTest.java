@@ -2,9 +2,13 @@ package base;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.safari.SafariOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -21,41 +25,69 @@ public class BaseTest {
         String browser = System.getProperty("browser");
         switch (browser.toLowerCase()) {
             case "chrome":
-                launchChromeDriver();
+                driver = launchChromeDriver();
                 break;
             case "firefox":
-                launchFirefoxDriver();
+                driver = launchFirefoxDriver();
                 break;
             case "safari":
-                launchSafariDriver();
+                driver = launchSafariDriver();
                 break;
             case "edge":
-                launchEdgeDriver();
+                driver = launchEdgeDriver();
                 break;
             default:
                 System.out.println("unrecognized browser");
+                driver = null;
         }
     }
 
-    private WebDriver launchChromeDriver() {
-        driver = new ChromeDriver();
-        return driver;
+    private ChromeDriver launchChromeDriver() {
+        return new ChromeDriver(setChromeOptions());
     }
 
-    private WebDriver launchFirefoxDriver() {
+    private FirefoxDriver launchFirefoxDriver() {
         System.setProperty("webdriver.gecko.driver", "/snap/bin/geckodriver");
-        driver = new FirefoxDriver();
-        return driver;
+        return new FirefoxDriver(setFirefoxOptions());
     }
 
     private WebDriver launchSafariDriver() {
-        driver = new SafariDriver();
-        return driver;
+        return new SafariDriver(setSafariOptions());
     }
 
     private WebDriver launchEdgeDriver() {
-        driver = new EdgeDriver();
-        return driver;
+        return new EdgeDriver(setEdgeOptions());
+    }
+
+    private ChromeOptions setChromeOptions() {
+        System.out.println("creating chrome options");
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--headless");
+        chromeOptions.addArguments("--incognito");
+        chromeOptions.addArguments("--start-maximized");
+        return chromeOptions;
+    }
+
+    private FirefoxOptions setFirefoxOptions() {
+        FirefoxOptions firefoxOptions = new FirefoxOptions();
+        firefoxOptions.addArguments("--headless");
+        firefoxOptions.addArguments("incognito");
+        firefoxOptions.addArguments("--start-maximized");
+        return firefoxOptions;
+    }
+
+    private SafariOptions setSafariOptions() {
+        SafariOptions safariOptions = new SafariOptions();
+        safariOptions.getBrowserName();
+        return safariOptions;
+    }
+
+    private EdgeOptions setEdgeOptions() {
+        EdgeOptions edgeOptions = new EdgeOptions();
+        edgeOptions.addArguments("--headless");
+        edgeOptions.addArguments("--incognito");
+        edgeOptions.addArguments("--start-maximized");
+        return edgeOptions;
     }
 
     @AfterMethod
