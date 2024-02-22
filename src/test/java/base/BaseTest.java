@@ -60,7 +60,6 @@ public class BaseTest {
     }
 
     private ChromeOptions setChromeOptions() {
-        System.out.println("creating chrome options");
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--headless");
         chromeOptions.addArguments("--incognito");
