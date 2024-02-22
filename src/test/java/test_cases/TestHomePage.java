@@ -3,6 +3,7 @@ package test_cases;
 import base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import utils.ReadProperties;
 
 public class TestHomePage extends BaseTest {
     @Test
