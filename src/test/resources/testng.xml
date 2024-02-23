@@ -1,13 +1,17 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="initial test suite">
-    <test name="initial test">
+<suite name="automation test suite">
+    <test name="sanity test">
         <classes>
-            <class name="test_cases.TestHomePage">
-                <methods>
-                    <include name="testUserIsOnHomePage"/>
-                </methods>
-            </class>
+            <class name="test_cases.TestHomePage"/>
+        </classes>
+    </test>
+    <test name="regression test">
+        <classes>
             <class name="test_cases.TestABTestingPagePage"/>
+        </classes>
+    </test>
+    <test name="smoke test">
+        <classes>
             <class name="test_cases.TestAddRemoveElementsPage"/>
         </classes>
     </test>
