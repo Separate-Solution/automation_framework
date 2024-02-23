@@ -47,7 +47,14 @@ public class BaseTest {
     }
 
     private FirefoxDriver launchFirefoxDriver() {
-        System.setProperty("webdriver.gecko.driver", "/snap/bin/geckodriver");
+        String os = System.getProperty("os.name");
+        if (os.contains("Linux")) {
+            System.setProperty("webdriver.gecko.driver", "/snap/bin/geckodriver");
+        } else if (os.contains("Windows")) {
+            System.setProperty("webdriver.gecko.driver", "C:/Program Files/Mozilla Firefox");
+        } else if (os.contains("Mac")) {
+            System.setProperty("webdriver.gecko.driver", "");
+        }
         return new FirefoxDriver(setFirefoxOptions());
     }
 
@@ -60,7 +67,6 @@ public class BaseTest {
     }
 
     private ChromeOptions setChromeOptions() {
-        System.out.println("creating chrome options");
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--headless");
         chromeOptions.addArguments("--incognito");
