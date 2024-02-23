@@ -19,7 +19,8 @@ public class BaseTest {
     @BeforeMethod
     public void setUp() {
         startDriverSession();
-        driver.get("https://the-internet.herokuapp.com/");
+        String aut = ReadProperties.getValue("application_under_test");
+        driver.get(aut);
     }
 
     private void startDriverSession() {
