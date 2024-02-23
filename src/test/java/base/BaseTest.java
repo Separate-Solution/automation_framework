@@ -11,6 +11,7 @@ import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.safari.SafariOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import utils.ReadProperties;
 
 public class BaseTest {
     protected WebDriver driver;
@@ -68,17 +69,29 @@ public class BaseTest {
 
     private ChromeOptions setChromeOptions() {
         ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--headless");
-        chromeOptions.addArguments("--incognito");
-        chromeOptions.addArguments("--start-maximized");
+        if (Boolean.parseBoolean(ReadProperties.getValue("headless"))) {
+            chromeOptions.addArguments("--headless");
+        }
+        if (Boolean.parseBoolean(ReadProperties.getValue("incognito"))) {
+            chromeOptions.addArguments("--incognito");
+        }
+        if (Boolean.parseBoolean(ReadProperties.getValue("launch-in-fullscreen"))) {
+            chromeOptions.addArguments("--start-maximized");
+        }
         return chromeOptions;
     }
 
     private FirefoxOptions setFirefoxOptions() {
         FirefoxOptions firefoxOptions = new FirefoxOptions();
-        firefoxOptions.addArguments("--headless");
-        firefoxOptions.addArguments("incognito");
-        firefoxOptions.addArguments("--start-maximized");
+        if (Boolean.parseBoolean(ReadProperties.getValue("headless"))) {
+            firefoxOptions.addArguments("--headless");
+        }
+        if (Boolean.parseBoolean(ReadProperties.getValue("incognito"))) {
+            firefoxOptions.addArguments("incognito");
+        }
+        if (Boolean.parseBoolean(ReadProperties.getValue("launch-in-fullscreen"))) {
+            firefoxOptions.addArguments("--start-maximized");
+        }
         return firefoxOptions;
     }
 
@@ -90,9 +103,15 @@ public class BaseTest {
 
     private EdgeOptions setEdgeOptions() {
         EdgeOptions edgeOptions = new EdgeOptions();
-        edgeOptions.addArguments("--headless");
-        edgeOptions.addArguments("--incognito");
-        edgeOptions.addArguments("--start-maximized");
+        if (Boolean.parseBoolean(ReadProperties.getValue("headless"))) {
+            edgeOptions.addArguments("--headless");
+        }
+        if (Boolean.parseBoolean(ReadProperties.getValue("incognito"))) {
+            edgeOptions.addArguments("--incognito");
+        }
+        if (Boolean.parseBoolean(ReadProperties.getValue("launch-in-fullscreen"))) {
+            edgeOptions.addArguments("--start-maximized");
+        }
         return edgeOptions;
     }
 
